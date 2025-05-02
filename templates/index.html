@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+<header>
+  <div class="header-info">
+    <!-- Display completed task count and total count -->
+    <h3>Completed Tasks: {{ completed_count }} / {{ total_count }}</h3>
+    
+    <!-- Show reward message if available -->
+    {% if reward_message %}
+    <div class="reward-message">{{ reward_message }}</div>
+    {% endif %}
+  </div>
+</header>
+
+<div class="container">
+  <h2>Priority Tasks</h2>
+  <a href="{{ url_for('add_task') }}" class="add-task-link">+ Add New Task</a>
+  <ul class="task-list">
+    {% for task in tasks %}
+      <li class="task-item {% if task.completed %}completed{% endif %}" data-priority="{{ task.priority }}">
+        <div class="task-details">
+          <strong>{{ task.title }}</strong> | {{ task.priority }} | {{ task.due_date }}
+        </div>
+        <div class="task-actions">
+          <!-- Toggle between complete and incomplete state -->
+          {% if task.completed %}
+            <a href="{{ url_for('complete_task', id=task.id) }}" class="toggle-complete">❌</a> <!-- Unmark as complete -->
+          {% else %}
+            <a href="{{ url_for('complete_task', id=task.id) }}" class="toggle-complete">✔️</a> <!-- Mark as complete -->
+          {% endif %}
+          <a href="{{ url_for('delete_task', id=task.id) }}" class="delete-task">🗑️</a>
+        </div>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

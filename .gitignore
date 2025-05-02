@@ -1,0 +1,35 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# VS Code / JetBrains / other editor config
+.vscode/
+.idea/
+
+# macOS system files
+.DS_Store
+
+# Environment variables / secrets
+*.env
+.env.*
+
+# Flask-related cache files
+instance/
+*.db
+*.sqlite3
+
+# Log files
+*.log
+
+# Compiled C extensions
+*.so
+
+# Backup files
+*~

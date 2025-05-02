@@ -1,0 +1,199 @@
+/* Global styles */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f5f6fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Banner/Header */
+header {
+    background-color: #000000;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+/* Reward and Task Info in Banner */
+header h1 {
+    margin: 0;
+    font-size: 32px;
+    letter-spacing: 1px;
+}
+
+.header-info {
+    margin-top: 15px;
+}
+
+.header-info h3 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Reward message styling */
+.reward-message {
+    background-color: #000000;
+    color: white;
+    padding: 15px;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.reward-message:hover {
+    background-color: #c45bb8;
+}
+
+/* Container for content */
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+/* Task List */
+.task-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.task-item {
+    background-color: #fff;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border-left: 6px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.task-item:hover {
+    transform: scale(1.01);
+}
+
+/* Priority Coloring */
+.task-item[data-priority="High"] {
+    border-left-color: #e74c3c; /* Red */
+}
+
+.task-item[data-priority="Medium"] {
+    border-left-color: #f39c12; /* Orange */
+}
+
+.task-item[data-priority="Low"] {
+    border-left-color: #2ecc71; /* Green */
+}
+
+/* Completed Task */
+.task-item.completed {
+    opacity: 0.6;
+    text-decoration: line-through;
+}
+
+/* Task text + meta info */
+.task-details {
+    flex: 1;
+}
+
+.task-details strong {
+    font-size: 18px;
+    display: block;
+}
+
+.task-details small {
+    color: #777;
+}
+
+/* Action Buttons */
+.task-actions a {
+    margin-left: 12px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #de6d6d;
+    transition: color 0.2s;
+}
+
+.task-actions a:hover {
+    color: #5ab95a;
+}
+
+/* Add Task Link */
+.add-task-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    background-color: #000000;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.add-task-link:hover {
+    background-color: #c45bb8;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .task-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .task-actions {
+        margin-top: 10px;
+    }
+}
+
+/* Form styling */
+form {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form input[type="text"],
+form textarea,
+form input[type="date"],
+form select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+form textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+form button[type="submit"] {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+form button[type="submit"]:hover {
+    background-color: #c45bb8;
+}
