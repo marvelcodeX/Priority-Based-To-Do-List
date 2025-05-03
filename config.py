@@ -1,6 +1,5 @@
 class Config:
+    MYSQL_USER = 'your_username'
+    MYSQL_PASSWORD = 'your_password'
     MYSQL_HOST = 'localhost'
-    MYSQL_USER = 'root'
-    MYSQL_PASSWORD = 'Nivinivi#213'
-    MYSQL_DB = 'todo_app'
-    SECRET_KEY = 'Pwd1234'
+    MYSQL_DB = 'your_database_name'
