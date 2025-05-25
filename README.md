@@ -20,11 +20,7 @@ A simple Flask-based to-do list application that allows users to create, priorit
 
 ## 🚀 Getting Started
 
-1. **Clone the repo:**
-   ```bash
-   git clone https://github.com/your-username/priority-todo-app.git
-   cd priority-todo-app
-````
+1. **Clone the repo**
 
 2. **Set up a virtual environment:**
 
@@ -41,6 +37,7 @@ A simple Flask-based to-do list application that allows users to create, priorit
 
 4. Create the database and table:
 
+<<<<<<< HEAD
 In your MySQL CLI or GUI (like phpMyAdmin), run:
 
 sql
@@ -58,6 +55,23 @@ CREATE TABLE task (
     completed BOOLEAN DEFAULT FALSE,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+=======
+   In your MySQL CLI or GUI (like phpMyAdmin), run:
+   
+   CREATE DATABASE your_database_name;
+   
+   USE your_database_name;
+   
+   CREATE TABLE task (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       title VARCHAR(255) NOT NULL,
+       description TEXT,
+       due_date DATE,
+       priority ENUM('High', 'Medium', 'Low'),
+       completed BOOLEAN DEFAULT FALSE,
+       created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+   );
+>>>>>>> 3f58743dafec9950f288c3a2d9a6ed0af6b2e6c8
 
 5. **Configure database:**
 
