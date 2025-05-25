@@ -13,20 +13,39 @@
 </header>
 
 <div class="container">
+  <!-- Reminder banner for tasks due tomorrow -->
+  {% if tasks_due_tomorrow and tasks_due_tomorrow|length > 0 %}
+  <div class="reminder-banner">
+    <strong>Reminder:</strong> The following tasks are due tomorrow:
+    <ul>
+      {% for task in tasks_due_tomorrow %}
+      <li>{{ task.title }} (Priority: {{ task.priority }})</li>
+      {% endfor %}
+    </ul>
+    <button class="dismiss-reminder">Dismiss</button>
+  </div>
+  {% endif %}
+
   <h2>Priority Tasks</h2>
   <a href="{{ url_for('add_task') }}" class="add-task-link">+ Add New Task</a>
   <ul class="task-list">
     {% for task in tasks %}
-      <li class="task-item {% if task.completed %}completed{% endif %}" data-priority="{{ task.priority }}">
+      <li class="task-item
+                 {% if task.completed %}completed{% endif %}
+                 {% if task.due_date and task.due_date < current_date and not task.completed %} overdue{% endif %}"
+          data-priority="{{ task.priority }}">
         <div class="task-details">
           <strong>{{ task.title }}</strong> | {{ task.priority }} | {{ task.due_date }}
+          {% if task.due_date and task.due_date < current_date and not task.completed %}
+          <span class="overdue-indicator">⚠️ Overdue</span>
+          {% endif %}
         </div>
         <div class="task-actions">
-          <!-- Toggle between complete and incomplete state -->
+          <!-- Toggle complete/incomplete -->
           {% if task.completed %}
-            <a href="{{ url_for('complete_task', id=task.id) }}" class="toggle-complete">❌</a> <!-- Unmark as complete -->
+            <a href="{{ url_for('complete_task', id=task.id) }}" class="toggle-complete" data-task-id="{{ task.id }}">❌</a> <!-- Unmark as complete -->
           {% else %}
-            <a href="{{ url_for('complete_task', id=task.id) }}" class="toggle-complete">✔️</a> <!-- Mark as complete -->
+            <a href="{{ url_for('complete_task', id=task.id) }}" class="toggle-complete" data-task-id="{{ task.id }}">✔️</a> <!-- Mark as complete -->
           {% endif %}
           <a href="{{ url_for('delete_task', id=task.id) }}" class="delete-task">🗑️</a>
         </div>

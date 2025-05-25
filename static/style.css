@@ -5,36 +5,45 @@ body {
     margin: 0;
     padding: 0;
     color: #333;
-}
-
-/* Banner/Header */
-header {
+  }
+  
+  /* Container with subtle gradient and shadow */
+  .container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 30px;
+    background: linear-gradient(145deg, #ffffff, #f0f0f5);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+  }
+  
+  /* Banner/Header */
+  header {
     background-color: #000000;
     color: white;
     padding: 20px;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     position: relative;
-}
-
-/* Reward and Task Info in Banner */
-header h1 {
+  }
+  
+  header h1 {
     margin: 0;
     font-size: 32px;
     letter-spacing: 1px;
-}
-
-.header-info {
+  }
+  
+  .header-info {
     margin-top: 15px;
-}
-
-.header-info h3 {
+  }
+  
+  .header-info h3 {
     font-size: 18px;
     font-weight: bold;
-}
-
-/* Reward message styling */
-.reward-message {
+  }
+  
+  /* Reward message styling */
+  .reward-message {
     background-color: #000000;
     color: white;
     padding: 15px;
@@ -43,26 +52,71 @@ header h1 {
     font-weight: bold;
     border-radius: 6px;
     transition: all 0.3s ease;
-}
-
-.reward-message:hover {
+    cursor: default;
+  }
+  
+  .reward-message:hover {
     background-color: #c45bb8;
-}
-
-/* Container for content */
-.container {
-    max-width: 800px;
-    margin: 30px auto;
-    padding: 20px;
-}
-
-/* Task List */
-.task-list {
+  }
+  
+  /* Reminder banner styling */
+  .reminder-banner {
+    background-color: #c45bb8;
+    color: #ffffff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ffeeba;
+    border-radius: 6px;
+    position: relative;
+    transition: opacity 0.5s ease;
+  }
+  
+  .reminder-banner ul {
+    margin: 10px 0;
+    padding-left: 20px;
+  }
+  
+  .reminder-banner button.dismiss-reminder {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .reminder-banner button.dismiss-reminder:hover,
+  .reminder-banner button.dismiss-reminder:focus {
+    background-color: #ffffff;
+    color: #000000;
+    outline: none;
+    box-shadow: 0 0 3px #c45bb8;
+  }
+  
+  /* Fade-out animation for reminder banner */
+  @keyframes fadeOut {
+    from { opacity: 1; max-height: 200px; margin-bottom: 20px; padding: 15px; }
+    to { opacity: 0; max-height: 0; margin: 0; padding: 0; }
+  }
+  
+  .reminder-banner.hide {
+    animation: fadeOut 0.5s forwards;
+  }
+  
+  /* Task List */
+  .task-list {
     list-style-type: none;
     padding: 0;
-}
-
-.task-item {
+    margin: 0;
+  }
+  
+  /* Task item with shadow and hover */
+  .task-item {
     background-color: #fff;
     padding: 15px 20px;
     margin-bottom: 15px;
@@ -72,61 +126,80 @@ header h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: transform 0.2s ease;
-}
-
-.task-item:hover {
-    transform: scale(1.01);
-}
-
-/* Priority Coloring */
-.task-item[data-priority="High"] {
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .task-item:hover {
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    transform: translateY(-3px);
+  }
+  
+  /* Priority Coloring */
+  .task-item[data-priority="High"] {
     border-left-color: #e74c3c; /* Red */
-}
-
-.task-item[data-priority="Medium"] {
+  }
+  
+  .task-item[data-priority="Medium"] {
     border-left-color: #f39c12; /* Orange */
-}
-
-.task-item[data-priority="Low"] {
+  }
+  
+  .task-item[data-priority="Low"] {
     border-left-color: #2ecc71; /* Green */
-}
-
-/* Completed Task */
-.task-item.completed {
+  }
+  
+  /* Overdue Task Styling */
+  .task-item.overdue {
+    border-left-color: #ff4d4d; /* Bright red for overdue */
+  }
+  
+  .overdue-indicator {
+    color: #ff4d4d;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  
+  /* Completed Task */
+  .task-item.completed {
     opacity: 0.6;
     text-decoration: line-through;
-}
-
-/* Task text + meta info */
-.task-details {
+  }
+  
+  /* Task text + meta info */
+  .task-details {
     flex: 1;
-}
-
-.task-details strong {
-    font-size: 18px;
+    line-height: 1.4;
+  }
+  
+  .task-details strong {
+    font-size: 1.2rem;
     display: block;
-}
-
-.task-details small {
-    color: #777;
-}
-
-/* Action Buttons */
-.task-actions a {
+  }
+  
+  /* Action Buttons with rounded background */
+  .task-actions a {
+    background-color: #f8d7da; /* light red */
+    padding: 6px 10px;
+    border-radius: 50%;
+    display: inline-block;
+    color: #de6d6d;
+    font-size: 18px;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
     margin-left: 12px;
     text-decoration: none;
-    font-size: 20px;
-    color: #de6d6d;
-    transition: color 0.2s;
-}
-
-.task-actions a:hover {
-    color: #5ab95a;
-}
-
-/* Add Task Link */
-.add-task-link {
+  }
+  
+  .task-actions a:hover,
+  .task-actions a:focus {
+    background-color: #5ab95a;
+    color: white;
+    transform: scale(1.2);
+    outline: none;
+    box-shadow: 0 0 6px #5ab95a;
+  }
+  
+  /* Add Task Link */
+  .add-task-link {
     display: inline-block;
     margin-bottom: 20px;
     background-color: #000000;
@@ -135,27 +208,41 @@ header h1 {
     border-radius: 6px;
     text-decoration: none;
     font-weight: bold;
-    transition: background-color 0.2s ease;
-}
-
-.add-task-link:hover {
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 8px rgba(196,91,184,0.5);
+    cursor: pointer;
+  }
+  
+  .add-task-link:hover,
+  .add-task-link:focus {
     background-color: #c45bb8;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
+    box-shadow: 0 4px 12px rgba(196,91,184,0.8);
+    outline: none;
+  }
+  
+  /* No tasks message */
+  .no-tasks-message {
+    text-align: center;
+    font-style: italic;
+    color: #777;
+    margin-top: 20px;
+    font-size: 18px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 600px) {
     .task-item {
-        flex-direction: column;
-        align-items: flex-start;
+      flex-direction: column;
+      align-items: flex-start;
     }
-
+  
     .task-actions {
-        margin-top: 10px;
+      margin-top: 10px;
     }
-}
-
-/* Form styling */
-form {
+  }
+  
+  /* Form styling */
+  form {
     background-color: #fff;
     padding: 25px;
     border-radius: 10px;
@@ -163,26 +250,26 @@ form {
     display: flex;
     flex-direction: column;
     gap: 15px;
-}
-
-form input[type="text"],
-form textarea,
-form input[type="date"],
-form select {
+  }
+  
+  form input[type="text"],
+  form textarea,
+  form input[type="date"],
+  form select {
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 16px;
     width: 100%;
     box-sizing: border-box;
-}
-
-form textarea {
+  }
+  
+  form textarea {
     resize: vertical;
     height: 100px;
-}
-
-form button[type="submit"] {
+  }
+  
+  form button[type="submit"] {
     background-color: #000000;
     color: white;
     border: none;
@@ -191,9 +278,156 @@ form button[type="submit"] {
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-form button[type="submit"]:hover {
+    transition: background-color 0.3s ease;
+  }
+  
+  form button[type="submit"]:hover,
+  form button[type="submit"]:focus {
     background-color: #c45bb8;
-}
+    outline: none;
+    box-shadow: 0 0 6px #c45bb8;
+  }
+  
+  /* Dark mode base */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+  
+  /* Example overrides for container and header */
+  body.dark-mode .container {
+    background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+  }
+  
+  body.dark-mode header {
+    background-color: #222222;
+    color: #f0f0f0;
+    box-shadow: 0 2px 4px rgba(255,255,255,0.1);
+  }
+  
+  /* Reminder banner in dark mode */
+  body.dark-mode .reminder-banner {
+    background-color: #4b0082; /* dark purple */
+    border-color: #9c27b0;
+    color: #eee;
+  }
+  
+  /* Task items dark mode */
+  body.dark-mode .task-item {
+    background-color: #222;
+    box-shadow: 0 2px 5px rgba(255,255,255,0.05);
+    color: #ccc;
+  }
+  
+  /* Completed tasks in dark mode */
+  body.dark-mode .task-item.completed {
+    opacity: 0.5;
+    text-decoration: line-through;
+    color: #777;
+  }
+  
+  /* Action buttons */
+  body.dark-mode .task-actions a {
+    background-color: #6a1b9a;
+    color: #eee;
+  }
+  
+  body.dark-mode .task-actions a:hover,
+  body.dark-mode .task-actions a:focus {
+    background-color: #ab47bc;
+    color: white;
+  }
+  
+  /* Add task link */
+  body.dark-mode .add-task-link {
+    background-color: #4a148c;
+    box-shadow: 0 2px 8px rgba(171, 71, 188, 0.5);
+  }
+  
+  body.dark-mode .add-task-link:hover,
+  body.dark-mode .add-task-link:focus {
+    background-color: #9c27b0;
+    box-shadow: 0 4px 12px rgba(171, 71, 188, 0.8);
+  }
+  
+  /* Form fields */
+  body.dark-mode form {
+    background-color: #222;
+    color: #ccc;
+    box-shadow: 0 2px 6px rgba(255,255,255,0.05);
+  }
+  
+  body.dark-mode form input,
+  body.dark-mode form textarea,
+  body.dark-mode form select {
+    background-color: #333;
+    color: #eee;
+    border: 1px solid #555;
+  }
+  
+  body.dark-mode form button[type="submit"] {
+    background-color: #6a1b9a;
+    color: #eee;
+  }
+  
+  body.dark-mode form button[type="submit"]:hover,
+  body.dark-mode form button[type="submit"]:focus {
+    background-color: #ab47bc;
+    box-shadow: 0 0 6px #ab47bc;
+  }
+
+  .theme-toggle-btn {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: transparent;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 9999;  /* so it stays on top */
+    color: #333;
+    transition: color 0.3s ease;
+  }
+  
+  .theme-toggle-btn:hover,
+  .theme-toggle-btn:focus {
+    color: #007BFF;  /* or any highlight color */
+    outline: none;
+  }
+  
+  /* In dark mode, adjust button color */
+  body.dark-mode .theme-toggle-btn {
+    color: #ddd;
+  }
+  
+  body.dark-mode .theme-toggle-btn:hover,
+  body.dark-mode .theme-toggle-btn:focus {
+    color: #66ccff;
+  }
+
+  body.dark-mode .task-actions a.toggle-complete {
+    color: #a8e6cf; /* light pastel green, easy on eyes */
+  }
+  
+  body.dark-mode .task-actions a.toggle-complete:hover {
+    color: #81c784; /* a bit brighter green on hover */
+  }
+  
+  body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .task-item {
+    transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .task-actions a {
+    transition: color 0.3s ease;
+  }
+  
+  a:focus, button:focus, input:focus, select:focus, textarea:focus {
+    outline: 3px solid #c45bb8;
+    outline-offset: 2px;
+  }
+    

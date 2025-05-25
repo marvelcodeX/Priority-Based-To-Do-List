@@ -44,8 +44,7 @@ A simple Flask-based to-do list application that allows users to create, priorit
 In your MySQL CLI or GUI (like phpMyAdmin), run:
 
 sql
-Copy
-Edit
+
 CREATE DATABASE your_database_name;
 
 USE your_database_name;
