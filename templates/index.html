@@ -2,10 +2,8 @@
 {% block content %}
 <header>
   <div class="header-info">
-    <!-- Display completed task count and total count -->
     <h3>Completed Tasks: {{ completed_count }} / {{ total_count }}</h3>
     
-    <!-- Show reward message if available -->
     {% if reward_message %}
     <div class="reward-message">{{ reward_message }}</div>
     {% endif %}
@@ -13,7 +11,6 @@
 </header>
 
 <div class="container">
-  <!-- Reminder banner for tasks due tomorrow -->
   {% if tasks_due_tomorrow and tasks_due_tomorrow|length > 0 %}
   <div class="reminder-banner">
     <strong>Reminder:</strong> The following tasks are due tomorrow:
@@ -36,16 +33,20 @@
           data-priority="{{ task.priority }}">
         <div class="task-details">
           <strong>{{ task.title }}</strong> | {{ task.priority }} | {{ task.due_date }}
+          
+          {% if task.description %}
+          <div class="task-description">{{ task.description }}</div>
+          {% endif %}
+          
           {% if task.due_date and task.due_date < current_date and not task.completed %}
           <span class="overdue-indicator">⚠️ Overdue</span>
           {% endif %}
         </div>
         <div class="task-actions">
-          <!-- Toggle complete/incomplete -->
           {% if task.completed %}
-            <a href="{{ url_for('complete_task', id=task.id) }}" class="toggle-complete" data-task-id="{{ task.id }}">❌</a> <!-- Unmark as complete -->
+            <a href="{{ url_for('complete_task', id=task.id) }}" class="toggle-complete" data-task-id="{{ task.id }}">❌</a>
           {% else %}
-            <a href="{{ url_for('complete_task', id=task.id) }}" class="toggle-complete" data-task-id="{{ task.id }}">✔️</a> <!-- Mark as complete -->
+            <a href="{{ url_for('complete_task', id=task.id) }}" class="toggle-complete" data-task-id="{{ task.id }}">✔️</a>
           {% endif %}
           <a href="{{ url_for('delete_task', id=task.id) }}" class="delete-task">🗑️</a>
         </div>
